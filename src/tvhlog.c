@@ -285,7 +285,8 @@ tvhlog_process
   if (options & TVHLOG_OPT_SYSLOG) {
     if (options & TVHLOG_OPT_DBG_SYSLOG || msg->severity < LOG_DEBUG) {
       s = msg->severity > LOG_DEBUG ? LOG_DEBUG : msg->severity;
-      syslog(s, "%s", msg->msg);
+      //syslog(s, "%s", msg->msg);
+      (void)s;
     }
   }
 
@@ -321,15 +322,16 @@ tvhlog_process
   }
 
   /* File */
-  if (*fp || path) {
+  //if (*fp || path) {
     if (options & TVHLOG_OPT_DBG_FILE || msg->severity < LOG_DEBUG) {
       const char *ltxt = logtxtmeta[msg->severity][0];
       if (!*fp)
-        *fp = tvh_fopen(path, "a");
+      //  *fp = tvh_fopen(path, "a");
+      *fp = tvh_fopen("/home/dave/log/tvheadend", "a");
       if (*fp)
         fprintf(*fp, "%s [%7s]:%s\n", t, ltxt, msg->msg);
     }
-  }
+  //}
 
   free(msg->msg);
   free(msg);

@@ -243,7 +243,12 @@ static void libav_va_log(int severity, const char *msg)
   l = strlen(s);
   if (s[l-1] == '\n')
     s[l-1] = '\0';
-  tvhlog(severity, LS_VAAPI, "%s", s);
+  //tvhlog(severity, LS_VAAPI, "%s", s);
+  if (!((strncasecmp(s,"specified frame type",20) == 0) ||
+   (strncasecmp(s,"forced frame type",17) == 0))) {
+   tvhlog(severity, LS_VAAPI, "%s", s);
+ }
+
 }
 
 #if VA_CHECK_VERSION(1, 0, 0)
