@@ -327,7 +327,7 @@ tvhlog_process
       const char *ltxt = logtxtmeta[msg->severity][0];
       if (!*fp)
       //  *fp = tvh_fopen(path, "a");
-      *fp = tvh_fopen("/home/dave/log/tvheadend", "a");
+      *fp = tvh_fopen("/var/log/tvheadend/tvheadend.log", "a");
       if (*fp)
         fprintf(*fp, "%s [%7s]:%s\n", t, ltxt, msg->msg);
     }

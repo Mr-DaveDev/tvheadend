@@ -19,6 +19,11 @@ configure)
    chown ${HTS_USER}:${HTS_USER} "${HTS_HOME}/.hts"
    chown ${HTS_USER}:${HTS_USER} "${HTS_HOME}/.hts/tvheadend"
 
+   if ! [ -d /var/log/tvheadend ]; then
+     mkdir -m 02750 /var/log/tvheadend
+     chown ${HTS_USER}:adm /var/log/tvheadend
+   fi
+
    HTS_SUPERUSERCONF="${HTS_HOME}/.hts/tvheadend/superuser"
    rm -f "${HTS_SUPERUSERCONF}"
    touch "${HTS_SUPERUSERCONF}"
